@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascipt</title>
+</head>
+<body>
+    <h1>Refreshing Javascipt</h1>
+    <script>
+        //let a=4;
+        let a="Hi";
+        console.log(a);
+
+        //use let to declare variables not var.
+        // variable redeclaration is allowed in var but not let.
+        const b=5;
+        // const cannot be changed.
+
+        // Data types: Numbers, Strings, Booleans, Objects, undefined, null.
+
+        function hello(){
+            console.log("Hi");
+        }
+
+        //calling function:
+        hello();
+
+        let obj1={fruit:'apple', veg:'brinjal'}
+        // accessing objects:
+        console.log(obj1.fruit);
+
+        // Js events:
+        document.addEventListener("click",function click(){
+            console.log("clicked");
+            alert("clicked");
+        });
+
+        // arrow function:
+        console.log(this);
+        function myFunc(number){
+            console.log("Number is: "+this);
+            // this is undefined here.
+        }
+
+
+       let myFun=(number)=>{
+        console.log("Number is: "+this);
+        // this is not undefined here.
+        }
+        myFun();
+
+        //Arrays:
+        let arr=[1,2,'Apple'];
+        // there are loops for arrays.
+
+        arr.forEach(element=>{
+
+        })
+
+        //callback function:
+
+        setTimeout(()=>{
+            console.log("heeeey");
+        });
+
+        console.log("code after the setTimeOut");
+    </script>
+</body>
+</html>
