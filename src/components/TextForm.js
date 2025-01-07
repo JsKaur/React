@@ -16,6 +16,20 @@ export default function TextForm(props) {
       setText(lower);
     }
 
+    const handleClearClick=()=>{
+      setText(" ");
+    }
+
+    const handleCopyClick=()=>{
+      navigator.clipboard.writeText(text)
+      .then(() => {
+        alert('Text copied to clipboard!');
+      })
+      .catch(() => {
+        alert('Failed to copy text.');
+      });
+    }
+
     const handleOnChange=(event)=>{
         console.log("On Change");
         setText(event.target.value);// earliar, I was not able to enter text in textarea, but now, it will add the input with the value="text" of textarea.
@@ -39,6 +53,8 @@ export default function TextForm(props) {
         </div>
         <button className="btn btn-primary mx-3" onClick={handleUpClick}>Convert To Uppercase</button>
         <button className="btn btn-primary mx-3" onClick={handleLowerClick}>Convert To Lowercase</button>
+        <button className="btn btn-primary mx-3" onClick={handleCopyClick}>Copy to Clipboard</button>
+        <button className="btn btn-primary mx-3" onClick={handleClearClick}>Clear</button>
     </div>
 
 
