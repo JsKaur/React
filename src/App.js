@@ -1,8 +1,10 @@
 
 import './App.css'; // style sheet
+import About from './components/About.js';
 import './components/Navbar.js';
 import Navbar from './components/Navbar.js';
 import TextForm from './components/TextForm.js';
+
 
 function App() {
   
@@ -14,9 +16,10 @@ function App() {
     <Navbar title="TextUtils" About="About Us" />
 
     {/* className='container' makes the text area center. */}
-    <div div className='container'>
-    <TextForm heading="Enter the text to analyze" />
-    </div>
+    
+    <About />
+   
+    
    </>
   );
 }
