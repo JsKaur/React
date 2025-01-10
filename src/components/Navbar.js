@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 // props are properties and accessed like variables.
 export default function Navbar(props) {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className={`navbar navbar-expand-lg navbar-${props.modes} bg-${props.modes}`}>
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
           {props.title}
@@ -49,6 +49,10 @@ export default function Navbar(props) {
               Search
             </button>
           </form>
+          <div className={`form-check form-switch text-${props.modes==='light'? 'dark' :'light'} mx-3`}>
+  <input className="form-check-input" onClick={props.toggleMode} type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+  <label className="form-check-label" for="flexSwitchCheckDefault">Enable Dark Mode</label>
+</div>
         </div>
       </div>
     </nav>
