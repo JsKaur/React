@@ -1,71 +1,68 @@
-// write rfc to import React and enter->
 
 import React, {useState} from 'react'
 
-// useState is the hook. It helps to use properties of class without creating it.
 
 export default function TextForm(props) {
-    const handleUpClick=()=>{
-        console.log("Uppercase clicked"+text);
-        let upper =text.toUpperCase();
-        setText(upper);
-        props.showAlert("Converted to Uppercase",'success');
+    const handleUpClick = ()=>{
+        // console.log("Uppercase was clicked: " +  text);
+        let newText = text.toUpperCase();
+        setText(newText);
+        props.showAlert("Converted to uppercase!", "success");
     }
 
-    const handleLowerClick=()=>{
-      let lower=text.toLowerCase();
-      setText(lower);
+    const handleLoClick = ()=>{ 
+        let newText = text.toLowerCase();
+        setText(newText)
     }
 
-    const handleClearClick=()=>{
-      setText(" ");
+    const handleClearClick = ()=>{ 
+        let newText = '';
+        setText(newText)
     }
 
-    const handleCopyClick=()=>{
-      navigator.clipboard.writeText(text)
-      .then(() => {
-        alert('Text copied to clipboard!');
-      })
-      .catch(() => {
-        alert('Failed to copy text.');
-      });
+    const handleOnChange = (event)=>{
+        // console.log("On change");
+        setText(event.target.value)
     }
 
-    const handleOnChange=(event)=>{
-        console.log("On Change");
-        setText(event.target.value);// earliar, I was not able to enter text in textarea, but now, it will add the input with the value="text" of textarea.
+    // Credits: A
+    const handleCopy = () => {
+        console.log("I am copy");
+        var text = document.getElementById("myBox");
+        text.select();
+        text.setSelectionRange(0, 9999);
+        navigator.clipboard.writeText(text.value);
     }
 
-    const [text, setText] = useState('');
-    // array destructuring syntax.
-    // text is a variable which can be updated from ' ' to something else using setText function.
-    // text= "new text" is wrong way to update it. 
-    // correct way is:
-    //setText("New text..");
-  return (
-    <>
+    // Credits: Coding Wala
+    const handleExtraSpaces = () => {
+        let newText = text.split(/[ ]+/);
+        setText(newText.join(" "))
+    }
 
-
-    <div className="container">
-      <h2>{props.heading}</h2>
-        <div className="mb-3">
-            
-            <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="8"></textarea>
+    const [text, setText] = useState(''); 
+    // text = "new text"; // Wrong way to change the state
+    // setText("new text"); // Correct way to change the state
+    return (
+        <>
+        <div className="container" style={{color: props.mode==='dark'?'white':'#042743'}}> 
+            <h1>{props.heading}</h1>
+            <div className="mb-3"> 
+            <textarea className="form-control" value={text} onChange={handleOnChange} style={{backgroundColor: props.mode==='dark'?'grey':'white', color: props.mode==='dark'?'white':'#042743'}} id="myBox" rows="8"></textarea>
+            </div>
+            <button className="btn btn-primary mx-1" onClick={handleUpClick}>Convert to Uppercase</button>
+            <button className="btn btn-primary mx-1" onClick={handleLoClick}>Convert to Lowercase</button>
+            <button className="btn btn-primary mx-1" onClick={handleClearClick}>Clear Text</button>
+            <button className="btn btn-primary mx-1" onClick={handleCopy}>Copy Text</button>
+            <button className="btn btn-primary mx-1" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
         </div>
-        <button className="btn btn-primary mx-3" onClick={handleUpClick}>Convert To Uppercase</button>
-        <button className="btn btn-primary mx-3" onClick={handleLowerClick}>Convert To Lowercase</button>
-        <button className="btn btn-primary mx-3" onClick={handleCopyClick}>Copy to Clipboard</button>
-        <button className="btn btn-primary mx-3" onClick={handleClearClick}>Clear</button>
-    </div>
-
-
-    <div className="container">
-      <h2>Your text summary</h2>
-      <p>{text.split(" ").length} words {text.length} characters</p>
-      <p>{0.008* text.split("").length} minute read</p>
-      <h2>Preview of text...</h2>
-      <p>{text}</p>
-    </div>
-    </>
-  )
+        <div className="container my-3" style={{color: props.mode==='dark'?'white':'#042743'}}>
+            <h2>Your text summary</h2>
+            <p>{text.split(" ").length} words and {text.length} characters</p>
+            <p>{0.008 *  text.split(" ").length} Minutes read</p>
+            <h2>Preview</h2>
+            <p>{text.length>0?text:"Enter something in the textbox above to preview it here"}</p>
+        </div>
+        </>
+    )
 }
