@@ -39,20 +39,21 @@ function App() {
 
   return (
     <>
-    <Router>
+    {/* <Router> */}
     {/* <Navbar title="TextUtils" aboutText="About TextUtils" /> */}
     {/* <Navbar/> */}
     <Navbar title="TextUtils" aboutText="About" mode={mode} toggleMode={toggleMode} />
     <Alert alert= {alert} />
     <div className="container my-3">
-          <Routes>
+          {/* <Routes> */}
             {/* good practice to use exact path because react can sometimes use partical matches as well. */}
-            <Route exact path="/about" element={<About/>} />
-            <Route exact path="/" element={<TextForm showAlert={showAlert} heading="Enter the text to analyze below" mode={mode} />} />
-          </Routes>
+            {/* <Route exact path="/about" element={<About/>} /> */}
+            {/* <Route exact path="/" element={<TextForm showAlert={showAlert} heading="Enter the text to analyze below" mode={mode} />} /> */}
+            <TextForm showAlert={showAlert} heading="Enter the text to analyze below" mode={mode} />
+          {/* </Routes> */}
         </div>
-    </Router>
-    
+    {/* </Router>
+     */}
     </> 
     
   );
